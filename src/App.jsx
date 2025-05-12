@@ -9,7 +9,9 @@ import Preview from './components/preview/Preview'
 
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import Footer from './components/footer/Footer'
-
+import Sell from './components/sell/Sell'
+import Post from './components/post/Post'
+import Profile from './components/profile/Profile'
 
 function App() {
 
@@ -27,17 +29,30 @@ function App() {
 
         <Route path='/preview' Component={Preview}/>
 
+        <Route path="/sell" Component={Sell}/>
+
       </Routes>
 
-      {/* <Footer/> */}
+      <Footer/>
       
       
     </BrowserRouter>
 
 
+    {/* <Sell/> */}
+    {/* <Home/> */}
+    {/* <Post/> */}
+    {/* <Profile/> */}
+
+    {/* <Navbar/> */}
+
+  
       
     </>
   )
 }
 
 export default App
+
+
+

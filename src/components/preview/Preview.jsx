@@ -20,7 +20,7 @@ const Preview = () => {
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6">
       {/* Image Slider Section */}
       <div className="flex items-center justify-center mb-6">
-        <div className="relative flex items-center w-full max-w-4xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] bg-black">
+        <div className="relative flex items-center w-[90%] h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] bg-black">
           {/* Left Arrow */}
           <button
             onClick={handlePrev}
@@ -68,7 +68,7 @@ const Preview = () => {
       </div>
 
       {/* Listing Details Section */}
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row">
+      <div className="w-[90%] mx-auto flex flex-col md:flex-row">
         {/* Left Column: Car Details */}
         <div className="flex-1 bg-white p-4 sm:p-6 rounded-lg shadow-md mb-4 md:mb-0">
           {/* Verified Seller Tag */}

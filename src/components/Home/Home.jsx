@@ -34,7 +34,7 @@ const Home = () => {
             <div className="relative">
               <div 
                 className="h-40 bg-cover bg-center" 
-                style={{ backgroundImage: "url('https://www.livemint.com/lm-img/img/2024/07/03/600x338/octa_defender_1720004492208_1720004497006.png')" }}
+                style={{ backgroundImage: "url('https://img.etimg.com/thumb/width-640,height-480,imgsize-69266,resizemode-75,msid-106775052/industry/auto/cars-uvs/super-sports-car-segment-in-india-to-register-30-pc-growth-this-year-mclaren-automotive/mclaren-750s-launched-in-india-at-rs-5-91-crore-what-makes-it-so-expensive.jpg')" }}
               ></div>
               <span className="absolute top-2 left-2 bg-yellow-400 text-xs font-semibold px-2 py-1 rounded">FEATURED</span>
               <button className="absolute top-2 right-2 bg-white rounded-full p-1">
@@ -55,7 +55,7 @@ const Home = () => {
             <div className="relative">
               <div 
                 className="h-40 bg-cover bg-center" 
-                style={{ backgroundImage: "url('https://www.livemint.com/lm-img/img/2024/07/03/600x338/octa_defender_1720004492208_1720004497006.png')" }}
+                style={{ backgroundImage: "url('https://img.etimg.com/thumb/width-640,height-480,imgsize-69266,resizemode-75,msid-106775052/industry/auto/cars-uvs/super-sports-car-segment-in-india-to-register-30-pc-growth-this-year-mclaren-automotive/mclaren-750s-launched-in-india-at-rs-5-91-crore-what-makes-it-so-expensive.jpg')" }}
               ></div>
               <button className="absolute top-2 right-2 bg-white rounded-full p-1">
                 <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
