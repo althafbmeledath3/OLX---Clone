@@ -5,7 +5,7 @@ import upload from "../multer/multer.config.js"
 const olx_routes = express.Router()
 
 
-olx_routes.post("/post",upload.array("images",20),post)
+olx_routes.post("/post",upload.array("file",10),post)
 
 
 export default olx_routes

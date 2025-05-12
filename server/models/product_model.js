@@ -19,6 +19,8 @@ const postSchema = new mongoose.Schema({
   description:{type:String,default:null},
   price:{type:String,required:true},
   location:{type:String,required:true},
+  km_driven:{type:String,required:true},
+  
 });
 
 
