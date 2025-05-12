@@ -16,11 +16,14 @@ const postSchema = new mongoose.Schema({
   transmission:{type:String,default:null},
   owners:{type:String,default:null},
   title:{type:String,default:null},
-  description:{type:String,default:null},
   price:{type:String,required:true},
-  location:{type:String,required:true},
+  location: {
+    state: { type: String, required: true },
+    city: { type: String, required: true },
+    neighborhood: { type: String, required: true },
+  },
   km_driven:{type:String,required:true},
-  
+
 });
 
 
