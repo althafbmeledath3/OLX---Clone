@@ -194,6 +194,7 @@ const Home = () => {
   async function loadData() {
     try {
       const response = await axios.get('http://localhost:4000/api/load');
+      console.log(response)
       setAds(response.data.ads); // Store the ads in state
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -204,6 +205,9 @@ const Home = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+
+  const server_url = "http://localhost:4000"
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
@@ -217,7 +221,7 @@ const Home = () => {
                 <div
                   className="h-40 bg-cover bg-center"
                   style={{
-                    backgroundImage: url(`http:localhost:4000/api/${ad.postImage[0]}`),
+                    backgroundImage: `url(${server_url}/${ad.postImage[0]})`,
                   }}
                 ></div>
                 <span className="absolute top-2 left-2 bg-yellow-400 text-xs font-semibold px-2 py-1 rounded">FEATURED</span>
