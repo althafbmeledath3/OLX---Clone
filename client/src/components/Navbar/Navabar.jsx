@@ -184,8 +184,8 @@ const Navbar = (props) => {
                         <p className="font-semibold uppercase all-cats cursor-pointer">All categories</p>
                         <img className="w-4 ml-2 cursor-pointer" src={arrow} alt="" />
                     </div>
-                    <li className="ml-4">vehicles</li>
-                    <li className="ml-4">electronics</li>
+                    <li className="ml-4">Vehicles</li>
+                    <li className="ml-4">Electronics</li>
                 </ul>
             </div>
         </div>
@@ -193,6 +193,11 @@ const Navbar = (props) => {
 };
 
 export default Navbar;
+
+
+
+
+
 
 
 

@@ -1,10 +1,10 @@
 
 
 
-export async function sell(req,res){
+export async function post(req,res){
 
     console.log("inside sell function")
-    console.log(req)
+    console.log(req.body)
 
 }
 

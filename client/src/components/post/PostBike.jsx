@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'lucide-react';
 
 const PostBike = () => {
     const [formData, setFormData] = useState({
@@ -24,17 +25,17 @@ const PostBike = () => {
 
     const states = [
         {
-            name: 'Maharashtra',
+            name: 'Kerala',
             cities: [
-                { name: 'Pune', neighborhoods: ['Koregaon Park', 'Hadapsar', 'Shivaji Nagar'] },
-                { name: 'Mumbai', neighborhoods: ['Bandra', 'Andheri', 'Colaba'] },
+                { name: 'Ernakulam', neighborhoods: ['Kochi', 'Kaloor', 'Edappally'] },
+                { name: 'Idukki', neighborhoods: ['Kattappana', 'Painavu', 'Thodupuzha'] },
             ],
         },
         {
-            name: 'Karnataka',
+            name: 'Delhi',
             cities: [
-                { name: 'Bangalore', neighborhoods: ['Koramangala', 'Indiranagar', 'Whitefield'] },
-                { name: 'Mysore', neighborhoods: ['Vijayanagar', 'Kuvempunagar', 'Gokulam'] },
+                { name: 'New Delhi', neighborhoods: ['Red Fort', 'Indiranagar', 'India Gate'] },
+                { name: 'Mysore', neighborhoods: ['Vijayanagar', 'Dwarka', 'South Delhi'] },
             ],
         },
     ];
@@ -104,10 +105,17 @@ const PostBike = () => {
                     <div className="mb-4">
                         <h2 className="text-base font-bold uppercase p-2">Selected Category</h2>
                         <div className="flex justify-between items-center p-2">
-                            <span className="text-sm text-gray-600">Cars / Cars</span>
-                            <a href="#" className="text-sm text-blue-600 hover:underline">
+                            <span className="text-sm text-gray-600">Bikes / Bikes</span>
+                            
+                            {/* <a href="/sell" className="text-sm text-blue-600 hover:underline">
                                 Change
-                            </a>
+                            </a> */}
+                            
+                            <span className='text-sm text-blue-600 hover:underline'onClick={()=>navigate("/sell")} >Change</span>
+                       
+
+                           
+
                         </div>
                     </div>
                     {/* Include Some Details Section */}
@@ -127,9 +135,9 @@ const PostBike = () => {
                                         className="w-full p-2 border border-gray-300 rounded-md text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="">Select Brand</option>
-                                        <option value="Toyota">Toyota</option>
-                                        <option value="Honda">Honda</option>
-                                        <option value="Ford">Ford</option>
+                                        <option value="Toyota">BMW</option>
+                                        <option value="Honda">Ducati</option>
+                                        <option value="Ford">Bentley</option>
                                     </select>
                                     <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
                                         ▼
@@ -139,7 +147,7 @@ const PostBike = () => {
                             {/* Car Name */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Car Name *
+                                    Bike Name *
                                 </label>
                                 <input
                                     type="text"
@@ -299,7 +307,7 @@ const PostBike = () => {
                                                     onChange={(e) => handleImageChange(index, e)}
                                                     className="hidden"
                                                 />
-                                                <span className="text-xl text-gray-500">📷</span>
+                                                <span className="text-xl text-gray-500"><svg width="36px" height="36px" viewBox="0 0 1024 1024" data-aut-id="icon"  ><path className="rui-jB92v" d="M861.099 667.008v78.080h77.568v77.653h-77.568v77.141h-77.568v-77.184h-77.611v-77.611h77.611v-78.080h77.568zM617.515 124.16l38.784 116.437h165.973l38.827 38.827v271.659l-38.827 38.357-38.741-38.4v-232.832h-183.125l-38.784-116.48h-176.853l-38.784 116.48h-183.083v426.923h426.667l38.784 38.357-38.784 39.253h-465.493l-38.741-38.869v-504.491l38.784-38.827h165.973l38.827-116.437h288.597zM473.216 318.208c106.837 0 193.92 86.955 193.92 194.048 0 106.923-87.040 194.091-193.92 194.091s-193.963-87.168-193.963-194.091c0-107.093 87.083-194.048 193.963-194.048zM473.216 395.861c-64.213 0-116.352 52.181-116.352 116.395 0 64.256 52.139 116.437 116.352 116.437 64.171 0 116.352-52.181 116.352-116.437 0-64.213-52.181-116.437-116.352-116.437z"></path></svg></span>
                                                 {index === 0 && (
                                                     <span className="text-xs text-gray-600 text-center">
                                                         Add Photos

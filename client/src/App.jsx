@@ -13,6 +13,8 @@ import Sell from './components/sell/Sell'
 import PostCar from './components/post/PostCar'
 import PostMobile from './components/post/PostMobile'
 import Profile from './components/profile/Profile'
+import PostBike from './components/post/PostBike'
+import PostLaptop from './components/post/PostLaptop'
 
 function App() {
 
@@ -49,10 +51,15 @@ function App() {
       <Route path="/sell" element={<Sell />} />
       <Route path="/post/cars" element={<PostCar />} />
       <Route path="/post/mobiles" element={<PostMobile />} />
+      <Route path='/post/bikes' element={<PostBike/>}/>
+      <Route path='/post/laptop' element={<PostLaptop/>} />
+    
  
     </Routes>
     <Footer/>
   </BrowserRouter>
+
+
 
 
     {/* <Sell/> */}

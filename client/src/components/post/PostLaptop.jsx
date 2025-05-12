@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const PostMobile = () => {
+const PostLaptop = () => {
     const [formData, setFormData] = useState({
         brand: '',
         adTitle: '',
@@ -34,18 +34,18 @@ const PostMobile = () => {
         },
     ];
 
-    const mobileBrands = [
+    const LaptopBrands = [
         'Apple',
         'Samsung',
-        'Xiaomi',
+        'Lenovo',
         'Google',
-        'OnePlus',
-        'Oppo',
-        'Vivo',
-        'Realme',
-        'Nokia',
-        'Motorola',
-        'Sony',
+        'Dell',
+        'Hp',
+        'Asus',
+        'MSI',
+        'ThinkPad',
+        'Acer',
+        'Toshiba',
         'LG',
     ];
 
@@ -106,10 +106,12 @@ const PostMobile = () => {
                     <div className="mb-4">
                         <h2 className="text-base font-bold uppercase p-2">Selected Category</h2>
                         <div className="flex justify-between items-center p-2">
-                            <span className="text-sm text-gray-600">Mobiles / Mobiles</span>
-                            <a href="#" className="text-sm text-blue-600 hover:underline">
+                            <span className="text-sm text-gray-600">Laptops / Laptops</span>
+                            {/* <a href="#" className="text-sm text-blue-600 hover:underline">
                                 Change
-                            </a>
+                            </a> */}
+
+                            <span className='text-sm text-blue-600 hover:underline' onClick={()=>navigate("/sell")} >Chsange</span>
                         </div>
                     </div>
                     {/* Include Some Details Section */}
@@ -129,7 +131,7 @@ const PostMobile = () => {
                                         className="w-full p-2 border border-gray-300 rounded-md text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="">Select Brand</option>
-                                        {mobileBrands.map((brand) => (
+                                        {LaptopBrands.map((brand) => (
                                             <option key={brand} value={brand}>
                                                 {brand}
                                             </option>
@@ -334,4 +336,4 @@ const PostMobile = () => {
     );
 };
 
-export default PostMobile;
+export default PostLaptop;

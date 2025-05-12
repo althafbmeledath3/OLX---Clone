@@ -1,3 +1,5 @@
+
+import axios from "axios"
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,8 +14,10 @@ const PostCar = () => {
         adTitle: '',
         description: '',
         price: '',
+        images: [],
+        category:"cars"
     });
-    const [images, setImages] = useState(Array(20).fill(null));
+    const [imagePreviews, setImagePreviews] = useState([]);
     const [location, setLocation] = useState({
         state: '',
         city: '',
@@ -52,24 +56,24 @@ const PostCar = () => {
         setFormData((prev) => ({ ...prev, transmission }));
     };
 
-    const handleImageChange = (index, e) => {
+    const handleImageChange = (e) => {
         const file = e.target.files[0];
-        if (file) {
+        if (file && formData.images.length < 20) {
             const imageUrl = URL.createObjectURL(file);
-            setImages((prev) => {
-                const newImages = [...prev];
-                newImages[index] = imageUrl;
-                return newImages;
-            });
+            setFormData((prev) => ({
+                ...prev,
+                images: [...prev.images, file],
+            }));
+            setImagePreviews((prev) => [...prev, imageUrl]);
         }
     };
 
     const removeImage = (index) => {
-        setImages((prev) => {
-            const newImages = [...prev];
-            newImages[index] = null;
-            return newImages;
-        });
+        setFormData((prev) => ({
+            ...prev,
+            images: prev.images.filter((_, i) => i !== index),
+        }));
+        setImagePreviews((prev) => prev.filter((_, i) => i !== index));
     };
 
     const handleLocationChange = (e) => {
@@ -83,8 +87,12 @@ const PostCar = () => {
         }
     };
 
-    const handlePostAd = () => {
-        console.log('Posting ad:', formData, images.filter((img) => img !== null), location);
+    const handlePostAd = async() => {
+
+
+        console.log('Posting ad:', { ...formData, location });
+
+        // const response = await axios.post("http://localhost:4000/api/post",{...formData,location})
     };
 
     return (
@@ -105,9 +113,12 @@ const PostCar = () => {
                         <h2 className="text-base font-bold uppercase p-2">Selected Category</h2>
                         <div className="flex justify-between items-center p-2">
                             <span className="text-sm text-gray-600">Cars / Cars</span>
-                            <a href="#" className="text-sm text-blue-600 hover:underline">
+                            <span
+                                className="text-sm text-blue-600 hover:underline cursor-pointer"
+                                onClick={() => navigate('/sell')}
+                            >
                                 Change
-                            </a>
+                            </span>
                         </div>
                     </div>
                     {/* Include Some Details Section */}
@@ -127,9 +138,33 @@ const PostCar = () => {
                                         className="w-full p-2 border border-gray-300 rounded-md text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="">Select Brand</option>
-                                        <option value="Toyota">Toyota</option>
-                                        <option value="Honda">Honda</option>
+                                        <option value="Toyota">Land Rover</option>
+                                        <option value="Honda">BMW</option>
+                                        <option value="Ford">Maserati</option>
+                                        <option value="Ford">Jaguar</option>
+                                        <option value="Ford">Mercedes Benz</option>
+                                        <option value="Ford">Audi</option>
+                                        <option value="Ford">Rolls Royce</option>
+                                        <option value="Ford">Lambhorghini</option>
+                                        <option value="Ford">Mclaren</option>
+                                        <option value="Ford">Pagani</option>
+                                        <option value="Ford">Koenigsegg</option>
+                                        <option value="Ford">Dodge</option>
+                                        <option value="Ford">Ferrari</option>
+                                        <option value="Ford">Bugatti</option>
+                                        <option value="Ford">Nissan</option>
+                                        <option value="Ford">Mustang</option>
+                                        <option value="Ford">Toyota</option>
+                                        <option value="Ford">Porsche</option>
+                                        <option value="Ford">VolksWagen</option>
                                         <option value="Ford">Ford</option>
+                                        <option value="Ford">Aston Martin</option>
+                                        <option value="Ford">Lotus</option>
+                                        <option value="Ford">Buga</option>
+                                        <option value="Ford">Bugatti</option>
+
+
+
                                     </select>
                                     <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
                                         ▼
@@ -211,6 +246,7 @@ const PostCar = () => {
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Number of Owners *
                                 </label>
+                                
                                 <input
                                     type="number"
                                     name="noOfOwners"
@@ -275,40 +311,55 @@ const PostCar = () => {
                         <h2 className="text-base font-bold uppercase p-2">Upload Photos</h2>
                         <div className="p-2">
                             <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
-                                {images.map((image, index) => (
-                                    <div key={index} className="relative">
-                                        {image ? (
-                                            <div>
-                                                <img
-                                                    src={image}
-                                                    alt={`Uploaded ${index + 1}`}
-                                                    className="w-20 h-20 object-cover rounded-md"
-                                                />
-                                                <button
-                                                    onClick={() => removeImage(index)}
-                                                    className="absolute top-1 right-1 bg-gray-200 rounded-full p-1 text-xs"
-                                                >
-                                                    ✕
-                                                </button>
-                                            </div>
-                                        ) : (
-                                            <label className="flex flex-col items-center justify-center w-20 h-20 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
-                                                <input
-                                                    type="file"
-                                                    accept="image/*"
-                                                    onChange={(e) => handleImageChange(index, e)}
-                                                    className="hidden"
-                                                />
-                                                <span className="text-xl text-gray-500">📷</span>
-                                                {index === 0 && (
-                                                    <span className="text-xs text-gray-600 text-center">
-                                                        Add Photos
+                                {Array(20)
+                                    .fill(null)
+                                    .map((_, index) => (
+                                        <div key={index} className="relative">
+                                            {imagePreviews[index] ? (
+                                                <div>
+                                                    <img
+                                                        src={imagePreviews[index]}
+                                                        alt={`Uploaded ${index + 1}`}
+                                                        className="w-20 h-20 object-cover rounded-md"
+                                                    />
+                                                    <button
+                                                        onClick={() => removeImage(index)}
+                                                        className="absolute top-1 right-1 bg-gray-200 rounded-full p-1 text-xs"
+                                                    >
+                                                        ✕
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <label className="flex flex-col items-center justify-center w-20 h-20 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
+                                                    <input
+                                                        type="file"
+                                                        accept="image/*"
+                                                        onChange={handleImageChange}
+                                                        className="hidden"
+                                                        disabled={formData.images.length >= 20}
+                                                    />
+                                                    <span className="text-xl text-gray-500">
+                                                        <svg
+                                                            width="36px"
+                                                            height="36px"
+                                                            viewBox="0 0 1024 1024"
+                                                            data-aut-id="icon"
+                                                        >
+                                                            <path
+                                                                className="rui-jB92v"
+                                                                d="M861.099 667.008v78.080h77.568v77.653h-77.568v77.141h-77.568v-77.184h-77.611v-77.611h77.611v-78.080h77.568zM617.515 124.16l38.784 116.437h165.973l38.827 38.827v271.659l-38.827 38.357-38.741-38.4v-232.832h-183.125l-38.784-116.48h-176.853l-38.784 116.48h-183.083v426.923h426.667l38.784 38.357-38.784 39.253h-465.493l-38.741-38.869v-504.491l38.784-38.827h165.973l38.827-116.437h288.597zM473.216 318.208c106.837 0 193.92 86.955 193.92 194.048 0 106.923-87.040 194.091-193.92 194.091s-193.963-87.168-193.963-194.091c0-107.093 87.083-194.048 193.963-194.048zM473.216 395.861c-64.213 0-116.352 52.181-116.352 116.395 0 64.256 52.139 116.437 116.352 116.437 64.171 0 116.352-52.181 116.352-116.437 0-64.213-52.181-116.437-116.352-116.437z"
+                                                            ></path>
+                                                        </svg>
                                                     </span>
-                                                )}
-                                            </label>
-                                        )}
-                                    </div>
-                                ))}
+                                                    {index === 0 && (
+                                                        <span className="text-xs text-gray-600 text-center">
+                                                            Add Photos
+                                                        </span>
+                                                    )}
+                                                </label>
+                                            )}
+                                        </div>
+                                    ))}
                             </div>
                         </div>
                     </div>
