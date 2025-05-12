@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const PostCar = () => {
+const PostBike = () => {
     const [formData, setFormData] = useState({
         brand: '',
         carName: '',
@@ -414,4 +414,4 @@ const PostCar = () => {
     );
 };
 
-export default PostCar;
+export default PostBike;
