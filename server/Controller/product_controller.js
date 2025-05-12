@@ -42,11 +42,9 @@ export async function post(req,res){
 
 
 
-
-
 export async function load(req,res){
 
-    console.log("insid load")
+    
 
     const ads = await postSchema.find()
 

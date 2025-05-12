@@ -173,10 +173,10 @@ const Footer = () => {
               </a>
             </div>
             <a href="#" className="block mb-2">
-              <img src="https://via.placeholder.com/120x40?text=Google+Play" alt="Google Play" className="h-8 sm:h-10" />
+              <img src="https://static.vecteezy.com/system/resources/previews/022/484/501/non_2x/google-play-store-icon-logo-symbol-free-png.png" alt="Google Play" className="h-8 sm:h-10" />
             </a>
             <a href="#">
-              <img src="https://via.placeholder.com/120x40?text=App+Store" alt="App Store" className="h-8 sm:h-10" />
+              <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-app-store-3d-icon-download-in-png-blend-fbx-gltf-file-formats--apple-logo-application-macos-pack-user-interface-icons-8219392.png" alt="App Store" className="h-8 sm:h-10" />
             </a>
           </div>
         </div>
@@ -210,3 +210,10 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
+
+
+
+
+

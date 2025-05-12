@@ -31,19 +31,19 @@ const PostCar = () => {
 
     const states = [
         {
-            name: 'Maharashtra',
+            name: 'Kerala',
             cities: [
-                { name: 'Pune', neighborhoods: ['Koregaon Park', 'Hadapsar', 'Shivaji Nagar'] },
-                { name: 'Mumbai', neighborhoods: ['Bandra', 'Andheri', 'Colaba'] },
+                { name: 'Ernakulam', neighborhoods: ['Kochi', 'Kaloor', 'Edappally','Kalamassery'] },
+                { name: 'Idukki', neighborhoods: ['Kattappana', 'Painavu', 'Thodupuzha'] },
             ],
         },
-        {
-            name: 'Karnataka',
-            cities: [
-                { name: 'Bangalore', neighborhoods: ['Koramangala', 'Indiranagar', 'Whitefield'] },
-                { name: 'Mysore', neighborhoods: ['Vijayanagar', 'Kuvempunagar', 'Gokulam'] },
-            ],
-        },
+        // {
+        //     name: 'Karnataka',
+        //     cities: [
+        //         { name: 'Bangalore', neighborhoods: ['Koramangala', 'Indiranagar', 'Whitefield'] },
+        //         { name: 'Mysore', neighborhoods: ['Vijayanagar', 'Kuvempunagar', 'Gokulam'] },
+        //     ],
+        // },
     ];
 
     const years = Array.from({ length: 2025 - 2000 + 1 }, (_, i) => (2025 - i).toString());
@@ -177,7 +177,7 @@ const PostCar = () => {
             });
 
             console.log('Response:', response);
-            alert(response.message);
+            alert(response.data.message);
             navigate('/');
         } catch (error) {
             console.error('Error posting ad:', error.response || error.message);
