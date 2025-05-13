@@ -15,14 +15,11 @@
 //     console.log(response.data.ads[0])
 //   }
 
-
-
 //   useEffect(()=>{
 
 //     loadData()
 //   })
-
-  
+ 
 //   return (
 //     <div className="min-h-screen bg-gray-100 font-sans">
 //       {/* Main Content */}
@@ -196,7 +193,9 @@ const Home = () => {
       const response = await axios.get('http://localhost:4000/api/load');
       console.log(response)
       const email = localStorage.getItem("email")
-      setAds(response.data.ads); 
+      const filtered_data = response.data.ads.filter(ad=>ad.email!==email)
+
+      setAds(filtered_data); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -260,3 +259,11 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
+
+
