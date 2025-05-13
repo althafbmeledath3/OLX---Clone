@@ -195,7 +195,8 @@ const Home = () => {
     try {
       const response = await axios.get('http://localhost:4000/api/load');
       console.log(response)
-      setAds(response.data.ads); // Store the ads in state
+      const email = localStorage.getItem("email")
+      setAds(response.data.ads); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }

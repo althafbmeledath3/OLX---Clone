@@ -4,7 +4,10 @@ import postSchema from "../models/product_model.js"
 
 export async function post(req,res){
 
+
     console.log("inside sell function")
+
+   
     const {category} = req.body
 
     console.log(req.body)
@@ -13,7 +16,7 @@ export async function post(req,res){
 
     if(category=="cars"){
 
-        const {brand,carName,year,fuel,transmission,noOfOwners,adTitle,description,price,kmDriven,location} = req.body
+        const {brand,carName,year,fuel,transmission,noOfOwners,adTitle,description,price,kmDriven,location,email} = req.body
 
        let post = []
 
@@ -22,19 +25,13 @@ export async function post(req,res){
          post.push(files[i].path)
          
        }
-
-
-    
-        const data = await postSchema.create({category,postImage:post,brand,description,name:carName,year,fuel,transmission,owners:noOfOwners,title:adTitle,km_driven:kmDriven,price,location:{
+        const data = await postSchema.create({email,category,postImage:post,brand,description,name:carName,year,fuel,transmission,owners:noOfOwners,title:adTitle,km_driven:kmDriven,price,location:{
             state:location.state,
             city:location.city,
             neighborhood:location.neighborhood
         }})
 
-
-
         res.status(200).json({message:"Ad Uploaded Successfully"})
-
         
     }
 
@@ -52,8 +49,5 @@ export async function load(req,res){
     if(ads){
 
         res.status(200).json({ads:ads})
-    }
-
-
-   
+    }   
 }

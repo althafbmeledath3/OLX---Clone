@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
 
+  email:{type:String,required:true},
   category:{type:String,required:true},  
   postImage: [{ type: String }],
   brand: {type:String,required:true},

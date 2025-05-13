@@ -152,6 +152,8 @@ const PostCar = () => {
         }
 
         try {
+
+           
             const formDataToSend = new FormData();
 
             Object.entries(formData).forEach(([key, value]) => {
@@ -160,9 +162,11 @@ const PostCar = () => {
                 }
             });
 
+
             formDataToSend.append('location[state]', location.state);
             formDataToSend.append('location[city]', location.city);
             formDataToSend.append('location[neighborhood]', location.neighborhood);
+            formDataToSend.append("email",localStorage.getItem("email"))
 
             formData.images.forEach((image) => {
                 formDataToSend.append('file', image);

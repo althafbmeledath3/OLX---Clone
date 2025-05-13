@@ -16,32 +16,19 @@ import Profile from './components/profile/Profile'
 import PostBike from './components/post/PostBike'
 import PostLaptop from './components/post/PostLaptop'
 
+
+import AuthLogin from './components/auth/login/login'
+import AuthLogout from './components/auth/logout/Logout'
+import AuthProfile from './components/auth/profile/Profile'
+import Login from './components/auth/login/login'
+// import { LogOut } from 'lucide-react'
+
 function App() {
 
   return (
     <>
 
-    {/* <BrowserRouter>
     
-
-      <Navbar/>
-
-      <Routes>
-
-        <Route path="/" Component={Home}/>
-
-        <Route path='/preview' Component={Preview}/>
-
-        <Route path="/sell" Component={Sell}/>
-
-        <Route path="/post" Component={Post}/>
-
-      </Routes>
-
-      <Footer/>
-      
-    </BrowserRouter> */}
-
 
 <BrowserRouter>
 
@@ -60,16 +47,7 @@ function App() {
   </BrowserRouter>
 
 
-
-
-    {/* <Sell/> */}
-    {/* <Home/> */}
-    {/* <Post/> */}
-    {/* <Profile/> */}
-
-    {/* <Navbar/> */}
-
-  
+    
       
     </>
   )
