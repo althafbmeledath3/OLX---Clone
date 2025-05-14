@@ -51,3 +51,26 @@ export async function load(req,res){
         res.status(200).json({ads:ads})
     }   
 }
+
+
+
+export async function preview(req, res) {
+
+    // console.log("Inside preview")
+    const id = req.params.id
+  
+    try {
+
+      const preview = await postSchema.findById(id)
+
+      if (!preview) {
+        return res.status(404).json({ message: "Post not found" })
+      }
+      res.status(200).json(preview)
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" })
+    }
+  }
+  
