@@ -33,17 +33,10 @@ const PostCar = () => {
         {
             name: 'Kerala',
             cities: [
-                { name: 'Ernakulam', neighborhoods: ['Kochi', 'Kaloor', 'Edappally','Kalamassery'] },
+                { name: 'Ernakulam', neighborhoods: ['Kochi', 'Kaloor', 'Edappally', 'Kalamassery'] },
                 { name: 'Idukki', neighborhoods: ['Kattappana', 'Painavu', 'Thodupuzha'] },
             ],
         },
-        // {
-        //     name: 'Karnataka',
-        //     cities: [
-        //         { name: 'Bangalore', neighborhoods: ['Koramangala', 'Indiranagar', 'Whitefield'] },
-        //         { name: 'Mysore', neighborhoods: ['Vijayanagar', 'Kuvempunagar', 'Gokulam'] },
-        //     ],
-        // },
     ];
 
     const years = Array.from({ length: 2025 - 2000 + 1 }, (_, i) => (2025 - i).toString());
@@ -152,8 +145,6 @@ const PostCar = () => {
         }
 
         try {
-
-           
             const formDataToSend = new FormData();
 
             Object.entries(formData).forEach(([key, value]) => {
@@ -162,17 +153,14 @@ const PostCar = () => {
                 }
             });
 
-
             formDataToSend.append('location[state]', location.state);
             formDataToSend.append('location[city]', location.city);
             formDataToSend.append('location[neighborhood]', location.neighborhood);
-            formDataToSend.append("email",localStorage.getItem("email"))
+            formDataToSend.append("email", localStorage.getItem("email"));
 
             formData.images.forEach((image) => {
                 formDataToSend.append('file', image);
             });
-
-            console.log('Posting ad:', { ...formData, location });
 
             const response = await axios.post("http://localhost:4000/api/post", formDataToSend, {
                 headers: {
@@ -180,7 +168,6 @@ const PostCar = () => {
                 },
             });
 
-            console.log('Response:', response);
             alert(response.data.message);
             navigate('/');
         } catch (error) {
@@ -190,30 +177,30 @@ const PostCar = () => {
     };
 
     return (
-        <div className="flex justify-center p-4 bg-gray-100 min-h-screen">
-            <div className="w-full max-w-md relative">
+        <div className="flex justify-center p-2 sm:p-4 bg-gray-100 min-h-screen">
+            <div className="w-full max-w-lg sm:max-w-2xl relative">
                 <button
-                    className="text-2xl focus:outline-none absolute -left-[390px] top-2 sm:-left-8"
+                    className="text-xl sm:text-2xl focus:outline-none absolute left-0 top-2"
                     onClick={() => navigate(-1)}
                 >
                     ←
                 </button>
-                <div className="flex items-center mb-4">
-                    <h1 className="text-lg font-bold uppercase">Post Your Ad</h1>
+                <div className="ml-8 sm:ml-10 mb-4">
+                    <h1 className="text-base sm:text-lg font-bold uppercase">Post Your Ad</h1>
                 </div>
                 {error && (
-                    <div className="mb-4 p-2 bg-red-100 text-red-700 text-sm rounded-md">
+                    <div className="mb-4 p-2 bg-red-100 text-red-700 text-xs sm:text-sm rounded-md">
                         {error}
                     </div>
                 )}
-                <div className="bg-white rounded-lg shadow-md p-4">
+                <div className="bg-white rounded-lg shadow-md p-3 sm:p-4">
                     {/* Selected Category Section */}
                     <div className="mb-4">
-                        <h2 className="text-base font-bold uppercase p-2">Selected Category</h2>
+                        <h2 className="text-sm sm:text-base font-bold uppercase p-2">Selected Category</h2>
                         <div className="flex justify-between items-center p-2">
-                            <span className="text-sm text-gray-600">Cars / Cars</span>
+                            <span className="text-xs sm:text-sm text-gray-600">Cars / Cars</span>
                             <span
-                                className="text-sm text-blue-600 hover:underline cursor-pointer"
+                                className="text-xs sm:text-sm text-blue-600 hover:underline cursor-pointer"
                                 onClick={() => navigate('/sell')}
                             >
                                 Change
@@ -222,11 +209,11 @@ const PostCar = () => {
                     </div>
                     {/* Include Some Details Section */}
                     <div className="mb-4">
-                        <h2 className="text-base font-bold uppercase p-2">Include Some Details</h2>
-                        <div className="p-2 space-y-4">
+                        <h2 className="text-sm sm:text-base font-bold uppercase p-2">Include Some Details</h2>
+                        <div className="p-2 space-y-3 sm:space-y-4">
                             {/* Brand */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Brand *
                                 </label>
                                 <div className="relative">
@@ -234,7 +221,7 @@ const PostCar = () => {
                                         name="brand"
                                         value={formData.brand}
                                         onChange={handleInputChange}
-                                        className="w-full p-2 border border-gray-300 rounded-md text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="">Select Brand</option>
                                         {[
@@ -247,14 +234,14 @@ const PostCar = () => {
                                             <option key={brand} value={brand}>{brand}</option>
                                         ))}
                                     </select>
-                                    <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
+                                    <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs sm:text-sm">
                                         ▼
                                     </span>
                                 </div>
                             </div>
                             {/* Car Name */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Car Name *
                                 </label>
                                 <input
@@ -263,12 +250,12 @@ const PostCar = () => {
                                     value={formData.carName}
                                     onChange={handleInputChange}
                                     placeholder="Enter Car Name (e.g., Civic, Camry)"
-                                    className="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                             </div>
                             {/* Year */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Year *
                                 </label>
                                 <div className="flex flex-wrap gap-2">
@@ -276,7 +263,7 @@ const PostCar = () => {
                                         <button
                                             key={year}
                                             onClick={() => handleYearChange(year)}
-                                            className={`px-4 py-1 border rounded-md text-sm ${
+                                            className={`px-3 sm:px-4 py-1 border rounded-md text-xs sm:text-sm ${
                                                 formData.year === year
                                                     ? 'bg-gray-200 border-gray-400'
                                                     : 'border-gray-300 hover:bg-gray-100'
@@ -289,7 +276,7 @@ const PostCar = () => {
                             </div>
                             {/* Kilometers Driven */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Kilometers Driven *
                                 </label>
                                 <input
@@ -298,12 +285,12 @@ const PostCar = () => {
                                     value={formData.kmDriven}
                                     onChange={handleInputChange}
                                     placeholder="Enter Kilometers Driven"
-                                    className="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                             </div>
                             {/* Fuel */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Fuel *
                                 </label>
                                 <div className="flex flex-wrap gap-2">
@@ -311,7 +298,7 @@ const PostCar = () => {
                                         <button
                                             key={fuel}
                                             onClick={() => handleFuelChange(fuel)}
-                                            className={`px-4 py-1 border rounded-md text-sm ${
+                                            className={`px-3 sm:px-4 py-1 border rounded-md text-xs sm:text-sm ${
                                                 formData.fuel === fuel
                                                     ? 'bg-gray-200 border-gray-400'
                                                     : 'border-gray-300 hover:bg-gray-100'
@@ -324,7 +311,7 @@ const PostCar = () => {
                             </div>
                             {/* Transmission */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Transmission *
                                 </label>
                                 <div className="flex gap-2">
@@ -332,7 +319,7 @@ const PostCar = () => {
                                         <button
                                             key={transmission}
                                             onClick={() => handleTransmissionChange(transmission)}
-                                            className={`px-4 py-1 border rounded-md text-sm ${
+                                            className={`px-3 sm:px-4 py-1 border rounded-md text-xs sm:text-sm ${
                                                 formData.transmission === transmission
                                                     ? 'bg-gray-200 border-gray-400'
                                                     : 'border-gray-300 hover:bg-gray-100'
@@ -345,7 +332,7 @@ const PostCar = () => {
                             </div>
                             {/* Number of Owners */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Number of Owners *
                                 </label>
                                 <div className="flex flex-wrap gap-2">
@@ -353,7 +340,7 @@ const PostCar = () => {
                                         <button
                                             key={noOfOwners}
                                             onClick={() => handleNoOfOwnersChange(noOfOwners)}
-                                            className={`px-4 py-1 border rounded-md text-sm ${
+                                            className={`px-3 sm:px-4 py-1 border rounded-md text-xs sm:text-sm ${
                                                 formData.noOfOwners === noOfOwners
                                                     ? 'bg-gray-200 border-gray-400'
                                                     : 'border-gray-300 hover:bg-gray-100'
@@ -366,7 +353,7 @@ const PostCar = () => {
                             </div>
                             {/* Ad Title */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Ad Title *
                                 </label>
                                 <input
@@ -375,12 +362,12 @@ const PostCar = () => {
                                     value={formData.adTitle}
                                     onChange={handleInputChange}
                                     placeholder="Enter Ad Title"
-                                    className="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                             </div>
                             {/* Description */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Description *
                                 </label>
                                 <textarea
@@ -388,19 +375,19 @@ const PostCar = () => {
                                     value={formData.description}
                                     onChange={handleInputChange}
                                     placeholder="Enter Description"
-                                    className="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     rows="4"
                                 />
                             </div>
                         </div>
                     </div>
-                    {/* Set a Price Section */}
+                    {/*  Price  */}
                     <div className="mb-4">
-                        <h2 className="text-base font-bold uppercase p-2">Set a Price</h2>
-                        <div className="p-2 space-y-4">
+                        <h2 className="text-sm sm:text-base font-bold uppercase p-2">Set a Price</h2>
+                        <div className="p-2 space-y-3 sm:space-y-4">
                             {/* Price */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     Price *
                                 </label>
                                 <input
@@ -409,16 +396,16 @@ const PostCar = () => {
                                     value={formData.price}
                                     onChange={handleInputChange}
                                     placeholder="₹ Enter Price"
-                                    className="w-full p-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
                             </div>
                         </div>
                     </div>
-                    {/* Upload Photos Section */}
+                    {/* Photos */}
                     <div className="mb-4">
-                        <h2 className="text-base font-bold uppercase p-2">Upload Photos</h2>
+                        <h2 className="text-sm sm:text-base font-bold uppercase p-2">Upload Photos</h2>
                         <div className="p-2">
-                            <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
+                            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                                 {Array(20)
                                     .fill(null)
                                     .map((_, index) => (
@@ -428,7 +415,7 @@ const PostCar = () => {
                                                     <img
                                                         src={imagePreviews[index]}
                                                         alt={`Uploaded ${index + 1}`}
-                                                        className="w-20 h-20 object-cover rounded-md"
+                                                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-md"
                                                     />
                                                     <button
                                                         onClick={() => removeImage(index)}
@@ -438,7 +425,7 @@ const PostCar = () => {
                                                     </button>
                                                 </div>
                                             ) : (
-                                                <label className="flex flex-col items-center justify-center w-20 h-20 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
+                                                <label className="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
                                                     <input
                                                         type="file"
                                                         accept="image/*"
@@ -447,12 +434,13 @@ const PostCar = () => {
                                                         className="hidden"
                                                         disabled={formData.images.length >= 20}
                                                     />
-                                                    <span className="text-xl text-gray-500">
+                                                    <span className="text-lg sm:text-xl text-gray-500">
                                                         <svg
-                                                            width="36px"
-                                                            height="36px"
+                                                            width="24px"
+                                                            height="24px"
                                                             viewBox="0 0 1024 1024"
                                                             data-aut-id="icon"
+                                                            className="sm:w-[36px] sm:h-[36px]"
                                                         >
                                                             <path
                                                                 className="rui-jB92v"
@@ -472,13 +460,13 @@ const PostCar = () => {
                             </div>
                         </div>
                     </div>
-                    {/* Confirm Your Location Section */}
+                    {/* Location  */}
                     <div className="mb-4">
-                        <h2 className="text-base font-bold uppercase p-2">Confirm Your Location</h2>
-                        <div className="p-2 space-y-4">
+                        <h2 className="text-sm sm:text-base font-bold uppercase p-2">Confirm Your Location</h2>
+                        <div className="p-2 space-y-3 sm:space-y-4">
                             {/* State */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                     State *
                                 </label>
                                 <div className="relative">
@@ -486,7 +474,7 @@ const PostCar = () => {
                                         name="state"
                                         value={location.state}
                                         onChange={handleLocationChange}
-                                        className="w-full p-2 border border-gray-300 rounded-md text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
                                         <option value="">Select State</option>
                                         {states.map((state) => (
@@ -495,7 +483,7 @@ const PostCar = () => {
                                             </option>
                                         ))}
                                     </select>
-                                    <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
+                                    <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs sm:text-sm">
                                         ▼
                                     </span>
                                 </div>
@@ -503,7 +491,7 @@ const PostCar = () => {
                             {/* City */}
                             {location.state && (
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                         City *
                                     </label>
                                     <div className="relative">
@@ -511,7 +499,7 @@ const PostCar = () => {
                                             name="city"
                                             value={location.city}
                                             onChange={handleLocationChange}
-                                            className="w-full p-2 border border-gray-300 rounded-md text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         >
                                             <option value="">Select City</option>
                                             {states
@@ -522,7 +510,7 @@ const PostCar = () => {
                                                     </option>
                                                 ))}
                                         </select>
-                                        <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
+                                        <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs sm:text-sm">
                                             ▼
                                         </span>
                                     </div>
@@ -531,7 +519,7 @@ const PostCar = () => {
                             {/* Neighborhood */}
                             {location.city && (
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                                         Neighborhood *
                                     </label>
                                     <div className="relative">
@@ -539,7 +527,7 @@ const PostCar = () => {
                                             name="neighborhood"
                                             value={location.neighborhood}
                                             onChange={handleLocationChange}
-                                            className="w-full p-2 border border-gray-300 rounded-md text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-2 border border-gray-300 rounded-md text-xs sm:text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         >
                                             <option value="">Select Neighborhood</option>
                                             {states
@@ -551,7 +539,7 @@ const PostCar = () => {
                                                     </option>
                                                 ))}
                                         </select>
-                                        <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500">
+                                        <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-xs sm:text-sm">
                                             ▼
                                         </span>
                                     </div>
@@ -559,11 +547,11 @@ const PostCar = () => {
                             )}
                         </div>
                     </div>
-                    {/* Post Your Ad Button */}
+                    {/* Post Your Ad  */}
                     <div className="p-2">
                         <button
                             onClick={handlePostAd}
-                            className="w-full py-2 text-white text-sm font-medium rounded-md bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full py-2 text-white text-xs sm:text-sm font-medium rounded-md bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             Post Your Ad
                         </button>
@@ -575,6 +563,21 @@ const PostCar = () => {
 };
 
 export default PostCar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

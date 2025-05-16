@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Footer = () => {
-  // State to manage dropdown visibility for each section on mobile
+  // dropdown manase state
   const [openSections, setOpenSections] = useState({
     popular: false,
     trending: false,
@@ -10,7 +10,7 @@ const Footer = () => {
     follow: false,
   });
 
-  // Toggle dropdown for a specific section
+  // Toggle dropdown 
   const toggleSection = (section) => {
     setOpenSections((prev) => ({
       ...prev,

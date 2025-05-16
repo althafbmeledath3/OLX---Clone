@@ -1,7 +1,5 @@
 
-
 import { useAuth } from '../context/context';
-// import { useAuth } from '../components/context/context';
 import { useSearch } from '../context/searchContext/search';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +31,11 @@ const Navbar = () => {
     setSearchQuery(e.target.value);
   };
 
+  const handleFavoritesClick = () => {
+    console.log('Heart icon clicked, navigating to /fav');
+    navigate('/fav');
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -40,15 +43,20 @@ const Navbar = () => {
   return (
     <div className="relative z-[1000]">
       <nav className="fixed top-0 w-full overflow-auto p-2 pl-3 pr-3 shadow-md bg-slate-100 border-b-4 border-solid border-b-white flex items-center z-[500]">
-        <img src={logo} alt="" className="w-12" />
+        <img
+          src={logo}
+          alt="OLX Logo"
+          className="w-12 cursor-pointer"
+          onClick={() => navigate('/')}
+        />
         <div className="relative location-search ml-5">
-          <img src={search} alt="" className="absolute top-4 left-2 w-5" />
+          <img src={search} alt="Search Icon" className="absolute top-4 left-2 w-5" />
           <input
             placeholder="Search city, area, or locality..."
             className="w-[50px] sm:w-[150px] md:w-[250px] lg:w-[270px] p-3 pl-8 pr-8 border-2 border-black rounded-md placeholder:text-ellipsis focus:outline-none focus:border-teal-300"
             type="text"
           />
-          <img src={arrow} alt="" className="absolute top-4 right-3 w-5 cursor-pointer" />
+          <img src={arrow} alt="Arrow Down" className="absolute top-4 right-3 w-5 cursor-pointer" />
         </div>
 
         <div className="ml-5 mr-2 relative w-full main-search">
@@ -65,10 +73,10 @@ const Navbar = () => {
 
         <div className="mx-1 sm:ml-5 sm:mr-5 relative lang flex items-center">
           <p className="font-bold mr-3">English</p>
-          <img src={arrow} alt="" className="w-5 cursor-pointer" />
+          <img src={arrow} alt="Arrow Down" className="w-5 cursor-pointer" />
         </div>
 
-        <div className="ml-5">
+        <div className="ml-5 flex items-center space-x-2">
           {email ? (
             <>
               <img
@@ -80,6 +88,27 @@ const Navbar = () => {
                 className="w-10 h-10 rounded-full cursor-pointer object-cover aspect-square profile-img"
                 onClick={toggleDropdown}
               />
+              {/* Favorite icon */}
+              <button
+                onClick={handleFavoritesClick}
+                className="flex items-center justify-center w-10 h-10 bg-white rounded-full hover:bg-gray-100 hover:cursor-pointer"
+                title="Favorites"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="#002f34"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  ></path>
+                </svg>
+              </button>
             </>
           ) : (
             <button
@@ -95,8 +124,8 @@ const Navbar = () => {
         <img
           src={addBtn}
           onClick={() => navigate('/sell')}
-          className="w-24 mx-1 sm:ml-5 sm:mr-5EMY shadow-xl rounded-full cursor-pointer"
-          alt=""
+          className="w-24 mx-1 sm:ml-5 sm:mr-5 shadow-xl rounded-full cursor-pointer"
+          alt="Sell Button"
         />
       </nav>
 
@@ -112,7 +141,7 @@ const Navbar = () => {
               className="w-10 h-10 rounded-full mr-2 object-cover aspect-square profile-img"
             />
             <div>
-              <p className="font-semibold text-gray-800">{email}</p>
+              <p className="font-semibold text-gray-800">{email.split("@")[0]}</p>
               <button className="text-white bg-blue-600 rounded-lg px-3 py-1 mt-1 text-sm hover:bg-blue-700 transition">
                 View and edit profile
               </button>
@@ -148,7 +177,7 @@ const Navbar = () => {
         <ul className="list-none flex items-center justify-center w-full">
           <div className="flex flex-shrink-0">
             <p className="font-semibold uppercase all-cats cursor-pointer">All categories</p>
-            <img className="w-4 ml-2 cursor-pointer" src={arrow} alt="" />
+            <img className="w-4 ml-2 cursor-pointer" src={arrow} alt="Arrow Down" />
           </div>
           <li className="ml-4">Vehicles</li>
           <li className="ml-4">Electronics</li>

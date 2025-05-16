@@ -1,7 +1,4 @@
 
-
-
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/context';
@@ -10,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Home = () => {
+const Favorites = () => {
   const [ads, setAds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [likedAds, setLikedAds] = useState({});
@@ -25,7 +22,8 @@ const Home = () => {
       const response = await axios.get(`${server_url}/api/load`, {
         params: { email },
       });
-      let filtered_data = response.data.ads.filter(ad => ad.email !== email);
+
+      let filtered_data = response.data.ads.filter(ad => ad.email !== email && ad.like.includes(email));
 
       if (searchQuery) {
         filtered_data = filtered_data.filter(ad =>
@@ -57,26 +55,33 @@ const Home = () => {
 
   const handleLikeClick = async (adId, e) => {
     e.stopPropagation();
-    console.log('Like button clicked for adId:', adId, 'with email:', email); 
-
+   
+  
     if (!email) {
       toast.error('Please log in to like a post');
       console.log('No email, exiting handleLikeClick');
       return;
     }
-
+  
     try {
       console.log('Sending like request to:', `${server_url}/api/like/${adId}`); 
       const response = await axios.get(`${server_url}/api/like/${adId}`, {
         params: { email },
       });
-
-      console.log('Like response:', response.data); 
+  
+      const isLiked = response.data.post.like.includes(email);
+  
+      
       setLikedAds(prev => ({
         ...prev,
-        [adId]: response.data.post.like.includes(email),
+        [adId]: isLiked,
       }));
-
+  
+     
+      if (!isLiked) {
+        setAds(prevAds => prevAds.filter(ad => ad._id !== adId));
+      }
+  
       // toast.success(response.data.message);
     } catch (error) {
       console.error('Error toggling like:', error.response || error.message);
@@ -98,7 +103,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
       <div className="max-w-7xl mx-auto py-6 px-4">
-        <h2 className="text-2xl font-semibold mb-4">Fresh recommendations</h2>
+        <h2 className="text-2xl font-semibold mb-4">WishList</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {currentItems.map((ad) => (
             <div
@@ -113,13 +118,13 @@ const Home = () => {
                     backgroundImage: `url(${server_url}/${ad.postImage[0]})`,
                   }}
                 ></div>
-                <span className="absolute top-2 left-2 bg-yellow-400 text-xs font-semibold px-2 py-1 rounded">
+                {/* <span className="absolute top-2 left-2 bg-yellow-400 text-xs font-semibold px-2 py-1 rounded">
                   FEATURED
-                </span>
+                </span> */}
                 <button
                   className="absolute top-2 right-2 bg-white rounded-full p-1 hover:cursor-pointer z-10"
                   onClick={(e) => handleLikeClick(ad._id, e)}
-                  type="button"
+                  type="button" 
                 >
                   <svg
                     className="w-5 h-5"
@@ -140,10 +145,10 @@ const Home = () => {
               <div className="p-4">
                 <p className="text-lg font-semibold">₹ {ad.price.toLocaleString()}</p>
                 <p className="text-sm text-gray-600">{ad.name}</p>
-                <p className="text-sm text-gray-600">{ad.year}</p>
+                {/* <p className="text-sm text-gray-600">{ad.year}</p>
                 <p className="text-xs text-gray-500">
                   {ad.location.city}, {ad.location.state}
-                </p>
+                </p>` */}
               </div>
             </div>
           ))}
@@ -224,4 +229,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Favorites;
+
+
+
+

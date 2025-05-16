@@ -24,6 +24,7 @@ const postSchema = new mongoose.Schema({
     neighborhood: { type: String, required: true },
   },
   km_driven:{type:String,required:true},
+  like: [{ type: String}]
 
 });
 
