@@ -42,7 +42,7 @@ Auth0 account for authentication
 Steps
 
 Clone the repository:
-git clone https://github.com/your-username/olx-clone.git
+git clone https://github.com/althafbmeledath3/olx-clone.git
 cd olx-clone
 
 
