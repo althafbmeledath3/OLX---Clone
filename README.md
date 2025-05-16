@@ -28,7 +28,7 @@ Tech Stack
 Frontend: React, Tailwind CSS, React Router, Auth0, Axios
 Backend: Node.js, Express.js, MongoDB, Mongoose
 Authentication: Auth0 for Google OAuth
-Deployment: (Add your deployment platform, e.g., Vercel, Heroku, or AWS)
+Deployment: (Replace with your deployment platform, e.g., Vercel, Heroku, or AWS)
 Tools: Vite (for fast React development), ESLint, Prettier
 
 Installation
@@ -66,7 +66,7 @@ AUTH0_CLIENT_SECRET=your_auth0_client_secret
 
 Create a .env file in the client directory:VITE_AUTH0_DOMAIN=your_auth0_domain
 VITE_AUTH0_CLIENT_ID=your_auth0_client_id
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:4000/api
 
 
 
@@ -92,21 +92,39 @@ View Profile: Click the profile picture in the navbar to access options like "My
 
 Project Structure
 olx-clone/
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── components/     # Reusable components (Navbar, Card, Post, etc.)
-│   │   ├── pages/          # Page components (Home, Sell, PostCar, etc.)
-│   │   ├── context/        # React Context for auth state
-│   │   ├── assets/         # Images and icons
-│   │   └── App.jsx         # Main app component
-├── server/                 # Node.js/Express backend
-│   ├── models/             # Mongoose schemas (Post, User)
-│   ├── routes/             # API routes (posts, auth, etc.)
-│   ├── middleware/         # Auth middleware
-│   └── server.js           # Entry point
-└── README.md               # Project documentation
+  client/                   # React frontend
+    src/
+      components/           # Reusable components (Navbar, Card, Post, etc.)
+      pages/                # Page components (Home, Sell, PostCar, etc.)
+      context/              # React Context for auth state
+      assets/               # Images and icons
+      App.jsx               # Main app component
+  server/                   # Node.js/Express backend
+    models/                 # Mongoose schemas (Post, User)
+    routes/                 # API routes (posts, auth, etc.)
+    middleware/             # Auth middleware
+    server.js               # Entry point
+  README.md                 # Project documentation
 
+Screenshots
+Note: Replace placeholder images with actual screenshots of your project.
+Home Page
 
+Ad Posting
+
+Favorites
+
+Contributing
+Contributions are welcome! Please follow these steps:
+
+Fork the repository.
+Create a new branch (git checkout -b feature/your-feature).
+Commit your changes (git commit -m "Add your feature").
+Push to the branch (git push origin feature/your-feature).
+Open a pull request.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 
 
