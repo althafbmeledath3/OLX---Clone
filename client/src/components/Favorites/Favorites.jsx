@@ -103,7 +103,7 @@ const Favorites = () => {
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
       <div className="max-w-7xl mx-auto py-6 px-4">
-        <h2 className="text-2xl font-semibold mb-4">WishList</h2>
+        <h2 className="text-2xl font-semibold mb-4">My WishList</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {currentItems.map((ad) => (
             <div
